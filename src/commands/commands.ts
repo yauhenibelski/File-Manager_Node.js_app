@@ -1,13 +1,14 @@
 import { cd } from "./cd.js";
 import { exit } from "./exit.js";
 import { up } from "./up.js";
+import { ls } from "./ls.js";
 
 export const commands = {
   _commands: {
     '.exit': exit,
     up,
     cd,
-    // ls,
+    ls,
     // cat,
     // add,
     // rn,
