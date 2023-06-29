@@ -2,43 +2,38 @@ import { homedir } from "os";
 import { createInterface } from "readline/promises";
 import { fileURLToPath } from "url";
 import { exit } from "./commands/exit.js";
+import { getName } from "./utils/getName.js";
+import { getCommand } from "./utils/getCommand.js";
 
 // const __filename = fileURLToPath(import.meta.url);
 
 class App {
-  static userName = '';
+  private readline = createInterface(process.stdin);
+
+  static userName = getName();
 
   static dir = {
     home: homedir(),
     current: homedir(),
   }
-
-  private readline = createInterface(process.stdin);
-
-  private showCurrentPath() {
-    process.stdout.write(`You are currently in ${App.dir.current}\n`);
+  static getMessage = {
+    currentPath: async () => process.stdout.write(`You are currently in ${App.dir.current}\n`),
+    invalidInput: async () => process.stdout.write(`Invalid input\n`),
+    failed: async () => process.stdout.write(`Operation failed\n`),
+    sayBuy: async () => process.stdout.write(`Thank you for using File Manager, ${App.userName}, goodbye!`),
+    sayWelcome: async () => process.stdout.write(`Welcome to the File Manager, ${App.userName}!\n\n`),
   }
 
-  private sayWelcome() {
-    const args = process.argv.slice(2);
-    const prefix = '--username';
-    const [,userName] = args.filter((arg) => arg.startsWith(prefix)).join().split('=');
-    const content = `Welcome to the File Manager, ${userName}!\n\n`;
-    App.userName = userName;
+  async run() {
+    await App.getMessage.sayWelcome();
+    await App.getMessage.currentPath();
 
-    process.stdout.write(content);
-    this.showCurrentPath();
-  }
-
-  run() {
-    this.sayWelcome();
-
-    this.readline.on('line', (data) => {
-
-      this.showCurrentPath();
-      if(data === '.exit') exit();
+    this.readline.on('line', async (input) => {
+      await getCommand(input);
+      App.getMessage.currentPath();
     })
-    process.on('SIGINT', exit)
+    process.on('SIGINT', exit);
   }
 };
+
 export default App
