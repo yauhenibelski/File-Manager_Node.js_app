@@ -4,8 +4,10 @@ import { fileURLToPath } from "url";
 import { exit } from "./commands/exit.js";
 import { getName } from "./utils/getName.js";
 import { getCommand } from "./utils/getCommand.js";
+import path from "path";
 
 const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 class App {
   private readline = createInterface(process.stdin);
@@ -14,7 +16,7 @@ class App {
 
   static dir = {
     home: homedir(),
-    current: __filename,
+    current: __dirname,
   }
   static getMessage = {
     currentPath: async () => process.stdout.write(`You are currently in ${App.dir.current}\n`),
