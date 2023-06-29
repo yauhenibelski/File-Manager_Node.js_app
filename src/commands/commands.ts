@@ -3,6 +3,7 @@ import { exit } from "./exit.js";
 import { up } from "./up.js";
 import { ls } from "./ls.js";
 import { cat } from "./cat.js";
+import { add } from "./add.js";
 
 export const commands = {
   _commands: {
@@ -11,7 +12,7 @@ export const commands = {
     cd,
     ls,
     cat,
-    // add,
+    add,
     // rn,
     // cp,
     // mv,
