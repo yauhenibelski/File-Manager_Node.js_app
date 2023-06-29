@@ -2,7 +2,8 @@ import App from "../app.js";
 import { commands } from "../commands/commands.js";
 
 export const getCommand = async (input: string) => {
-  const [command, value] = input.split(' ');
+  const [command] = input.split(' ');
+  const value = input.split(' ').slice(1).join(' ');
 
   if(input === '') {
     return App.getMessage.invalidInput();
