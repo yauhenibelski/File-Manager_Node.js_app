@@ -1,5 +1,4 @@
 import { homedir } from "os";
-import path from "path";
 import { createInterface } from "readline/promises";
 import { fileURLToPath } from "url";
 import { exit } from "./commands/exit.js";
@@ -9,18 +8,18 @@ import { exit } from "./commands/exit.js";
 class App {
   static userName = '';
 
-  dir = {
+  static dir = {
     home: homedir(),
     current: homedir(),
   }
 
-  readline = createInterface(process.stdin);
+  private readline = createInterface(process.stdin);
 
-  showCurrentPath() {
-    process.stdout.write(`You are currently in ${this.dir.current}\n`);
+  private showCurrentPath() {
+    process.stdout.write(`You are currently in ${App.dir.current}\n`);
   }
 
-  sayWelcome() {
+  private sayWelcome() {
     const args = process.argv.slice(2);
     const prefix = '--username';
     const [,userName] = args.filter((arg) => arg.startsWith(prefix)).join().split('=');
