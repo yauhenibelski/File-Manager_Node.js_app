@@ -7,6 +7,8 @@ import { add } from "./add.js";
 import { rn } from "./rn.js";
 import { cp } from "./cp.js";
 import { mv } from "./mv.js";
+import { rm } from "./rm.js";
+import { os} from "./os.js";
 
 export const commands = {
   _commands: {
@@ -19,8 +21,8 @@ export const commands = {
     rn,
     cp,
     mv,
-    // rm,
-    // os,
+    rm,
+    os,
     // hash,
     // compress,
     // decompress,

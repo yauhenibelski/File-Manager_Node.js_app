@@ -50,8 +50,6 @@ List of operations and their syntax:
     ```bash
     ls
     ```
-    Example of how `ls` command output may look like  
-    ![ls output example](./ls-example.JPG)  
 - Basic operations with files
     - Read file and print it's content in console (should be done using Readable stream): 
     ```bash
@@ -108,3 +106,8 @@ List of operations and their syntax:
     ```bash
     compress path_to_file path_to_destination
     ```
+    - Decompress file (using Brotli algorithm, should be done using Streams API)
+    ```bash
+    decompress path_to_file path_to_destination
+    ```
+   NB! After decompressing of previously compressed file result should not differ with originally compressed file
