@@ -10,6 +10,8 @@ import { mv } from "./mv.js";
 import { rm } from "./rm.js";
 import { os} from "./os.js";
 import { hash } from "./hash.js";
+import { compress } from "./compress.js";
+import { decompress } from "./decompress.js";
 
 export const commands = {
   _commands: {
@@ -25,8 +27,8 @@ export const commands = {
     rm,
     os,
     hash,
-    // compress,
-    // decompress,
+    compress,
+    decompress,
   },
   get(name: string){
     return Object.getOwnPropertyDescriptor(this._commands, name)?.value;
