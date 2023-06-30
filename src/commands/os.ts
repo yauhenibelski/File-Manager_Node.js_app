@@ -1,4 +1,4 @@
-import * as oS from "os";
+import oS from "os";
 import App from "../app.js";
 
 export const os = async (prefix: '--EOL' | '--cpus' | '--homedir' | '--username' | '--architecture') => {

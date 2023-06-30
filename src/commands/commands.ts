@@ -9,6 +9,7 @@ import { cp } from "./cp.js";
 import { mv } from "./mv.js";
 import { rm } from "./rm.js";
 import { os} from "./os.js";
+import { hash } from "./hash.js";
 
 export const commands = {
   _commands: {
@@ -23,7 +24,7 @@ export const commands = {
     mv,
     rm,
     os,
-    // hash,
+    hash,
     // compress,
     // decompress,
   },
