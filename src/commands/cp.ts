@@ -1,6 +1,6 @@
 import { stat } from "fs/promises";
 import path from "path";
-import { recursivCopy } from "../utils/recursivCopy.js";
+import { recursiveCopy } from "../utils/recursiveCopy.js";
 
 
 export const cp = async (value: string) => {
@@ -15,5 +15,5 @@ export const cp = async (value: string) => {
       ? path.join(path.sep, ...newPathCopyFile ,`${file}_copy`)
       : path.join(path.sep, ...newPathCopyFile, `${file?.replace(extname, '')}_copy${extname}`)
   }
-  await recursivCopy(pathFile, copyPathFile);
+  await recursiveCopy(pathFile, copyPathFile);
 }

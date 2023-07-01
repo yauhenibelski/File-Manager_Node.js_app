@@ -1,13 +1,16 @@
-import { stat, copyFile, mkdir, readdir } from "fs/promises";
+import { stat, mkdir, readdir } from "fs/promises";
 import { createReadStream, createWriteStream } from "fs"
 import path from "path";
 import { pipeline } from "stream/promises";
 
-export const recursivCopy = async (pathFile: string, copyPathFile: string) => {
+export const recursiveCopy = async (pathFile: string, copyPathFile: string) => {
   const file = await stat(pathFile);
 
   if (file.isFile()) {
-    await copyFile(pathFile, copyPathFile)
+    await pipeline(
+      createReadStream(pathFile),
+      createWriteStream(copyPathFile)
+    );
   } else {
     await mkdir(copyPathFile);
 
@@ -19,12 +22,7 @@ export const recursivCopy = async (pathFile: string, copyPathFile: string) => {
         const direntPath = path.join(pathFile, dirent.name);
         const direntCopyPath = path.join(copyPathFile, dirent.name);
 
-        dirent.isFile()
-          ? await pipeline(
-              createReadStream(direntPath),
-              createWriteStream(direntCopyPath)
-            )
-          : await recursivCopy(direntPath, direntCopyPath);
+        await recursiveCopy(direntPath, direntCopyPath);
       })
     }
   }

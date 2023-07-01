@@ -1,5 +1,5 @@
 import App from "../app.js";
-import { recursivCopy } from "../utils/recursivCopy.js";
+import { recursiveCopy } from "../utils/recursiveCopy.js";
 import { rm } from "fs/promises";
 
 export const mv = async (value: string) => {
@@ -8,7 +8,7 @@ export const mv = async (value: string) => {
   if (pathFile === copyPathFile) {
     return App.getMessage.invalidInput();
   }
-  await recursivCopy(pathFile, copyPathFile);
+  await recursiveCopy(pathFile, copyPathFile);
 
   await rm(pathFile);
 }
